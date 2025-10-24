@@ -1,5 +1,6 @@
 pip==25.1.1
 gunicorn
+
 # =================================
 # Stock Analyzer Pro - Requirements
 # =================================
@@ -19,8 +20,6 @@ numpy==1.25.2
 
 # === STOCK DATA & FINANCIAL ANALYSIS ===
 yfinance==0.2.18
-# ta-lib - Note: This requires system-level installation first
-# Install TA-Lib system library before pip install
 TA-Lib==0.4.28
 
 # === REAL-TIME & BACKGROUND JOBS ===
