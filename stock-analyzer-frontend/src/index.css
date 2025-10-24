@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Price update animations */
+@keyframes pricePulse {
+  0% { 
+    transform: scale(1);
+    color: inherit;
+  }
+  50% { 
+    transform: scale(1.05);
+    color: #10b981; /* Green for positive */
+  }
+  100% { 
+    transform: scale(1);
+    color: inherit;
+  }
+}
+
+@keyframes pricePulseNegative {
+  0% { 
+    transform: scale(1);
+    color: inherit;
+  }
+  50% { 
+    transform: scale(1.05);
+    color: #ef4444; /* Red for negative */
+  }
+  100% { 
+    transform: scale(1);
+    color: inherit;
+  }
+}
+
+.price-update {
+  animation: pricePulse 1s ease-in-out;
+}
+
+.price-update.negative {
+  animation: pricePulseNegative 1s ease-in-out;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+body {
+  @apply bg-gray-50 text-gray-800;
+}

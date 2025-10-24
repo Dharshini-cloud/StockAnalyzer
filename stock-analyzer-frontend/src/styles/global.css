@@ -1,0 +1,202 @@
+/* src/styles/global.css */
+
+/* CSS Variables for theming */
+:root {
+  /* Light theme variables */
+  --bg-primary: #0f1419; /* Changed to dark background */
+  --bg-secondary: #1a202c; /* Changed to dark */
+  --bg-tertiary: #2d3748; /* Changed to dark */
+  --bg-card: #1e293b; /* Changed to dark */
+  --bg-hover: #334155; /* Changed to dark */
+  
+  --text-primary: #f7fafc; /* Keep text light for contrast */
+  --text-secondary: #e2e8f0; /* Keep text light */
+  --text-tertiary: #cbd5e0; /* Keep text light */
+  --text-muted: #94a3b8; /* Keep text light */
+  
+  --border-light: #374151; /* Dark borders */
+  --border-medium: #4b5563; /* Dark borders */
+  --border-dark: #6b7280; /* Dark borders */
+  
+  --accent-primary: #7f9cf5; /* Keep accent colors */
+  --accent-primary-hover: #667eea; /* Keep accent colors */
+  --accent-secondary: #9f7aea; /* Keep accent colors */
+  --accent-success: #68d391; /* Keep accent colors */
+  --accent-warning: #f6ad55; /* Keep accent colors */
+  --accent-error: #fc8181; /* Keep accent colors */
+  --accent-info: #63b3ed; /* Keep accent colors */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3); /* Darker shadows */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2); /* Darker shadows */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* Darker shadows */
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2); /* Darker shadows */
+}
+
+/* Dark theme variables - Keeping this section but it will use the same values as root now */
+[data-theme="dark"] {
+  --bg-primary: #0f1419;
+  --bg-secondary: #1a202c;
+  --bg-tertiary: #2d3748;
+  --bg-card: #1e293b;
+  --bg-hover: #334155;
+  
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #cbd5e0;
+  --text-muted: #94a3b8;
+  
+  --border-light: #374151;
+  --border-medium: #4b5563;
+  --border-dark: #6b7280;
+  
+  --accent-primary: #7f9cf5;
+  --accent-primary-hover: #667eea;
+  --accent-secondary: #9f7aea;
+  --accent-success: #68d391;
+  --accent-warning: #f6ad55;
+  --accent-error: #fc8181;
+  --accent-info: #63b3ed;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply theme classes for body */
+body.light-theme {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.dark-theme {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Smooth transitions for theme changes */
+.theme-transition * {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease,
+              opacity 0.3s ease !important;
+}
+
+/* Common component styles using CSS variables */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.button {
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-dark);
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+
+.border-light { border-color: var(--border-light); }
+.border-medium { border-color: var(--border-medium); }
+
+/* Animation for theme transition */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.theme-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}

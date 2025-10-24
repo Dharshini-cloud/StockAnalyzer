@@ -1,0 +1,201 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.main-content { margin-top: 70px; }
+/* src/App.css */
+/* Light Theme (Default) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-card: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #4b5563;
+  --accent-color: #60a5fa;
+  --accent-hover: #3b82f6;
+  --success-color: #34d399;
+  --error-color: #f87171;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Apply themes to entire app */
+.App {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: calc(100vh - 70px);
+}
+
+/* Update existing components to use CSS variables */
+
+/* Profile and Preferences pages */
+.profile-container,
+.preferences-container {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.form-section,
+.pref-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.form-section h3,
+.pref-section h2,
+.pref-info h3 {
+  color: var(--text-primary);
+}
+
+.form-section p,
+.pref-info p {
+  color: var(--text-secondary);
+}
+
+.input-group input,
+.input-group textarea,
+.pref-select,
+.threshold-input input {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.pref-select:focus,
+.threshold-input input:focus {
+  border-color: var(--accent-color);
+}
+
+.user-badge {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Buttons */
+.save-btn,
+.btn-primary {
+  background: var(--accent-color);
+  color: white;
+}
+
+.save-btn:hover:not(:disabled),
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* Messages */
+.message.success {
+  background: var(--success-color);
+  color: white;
+}
+
+.message.error {
+  background: var(--error-color);
+  color: white;
+}
+
+/* Toggle switch in dark mode */
+[data-theme="dark"] .slider {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+/* Update Navbar for dark theme */
+.navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand,
+.nav-link {
+  color: var(--text-primary) !important;
+}
+
+/* Update Dashboard, Watchlist, Portfolio components */
+.stock-card,
+.portfolio-card,
+.watchlist-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.stock-card h3,
+.portfolio-card h2,
+.watchlist-item h4 {
+  color: var(--text-primary);
+}
+
+.stock-card p,
+.portfolio-card p {
+  color: var(--text-secondary);
+}

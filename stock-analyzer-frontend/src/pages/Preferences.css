@@ -1,0 +1,581 @@
+.preferences-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.preferences-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preferences-header h1 {
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.preferences-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Preferences Status Bar */
+.preferences-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.status-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+}
+
+.status-value.active {
+  background: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+
+.status-value.inactive {
+  background: var(--text-secondary);
+  color: white;
+  border-color: var(--text-secondary);
+}
+
+.unsaved-indicator {
+  color: #e67e22;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Preferences Form */
+.preferences-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pref-section {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.pref-section h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.pref-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pref-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pref-item:first-child {
+  padding-top: 0;
+}
+
+.pref-info h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.pref-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Toggle Switch - FIXED FOR LIGHT MODE */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+  border: 2px solid transparent;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  border-color: var(--accent-color);
+}
+
+/* Dark theme specific toggle styles */
+[data-theme="dark"] .slider {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+[data-theme="dark"] input:checked + .slider {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Select Dropdowns */
+.pref-select {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  min-width: 150px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pref-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Threshold Input */
+.threshold-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.threshold-input input {
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  width: 80px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.threshold-input input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.threshold-input span {
+  color: var(--text-primary);
+  font-weight: 600;
+  min-width: 20px;
+}
+
+/* Save Button */
+.pref-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.save-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.save-btn:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .preferences-container {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .preferences-header h1 {
+    font-size: 2rem;
+  }
+
+  .preferences-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .pref-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .pref-select,
+  .threshold-input {
+    align-self: stretch;
+  }
+
+  .threshold-input input {
+    width: 100%;
+  }
+
+  .pref-actions {
+    justify-content: center;
+  }
+
+  .save-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .preferences-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .pref-section {
+    padding: 1.5rem;
+  }
+
+  .pref-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .toggle-switch {
+    width: 50px;
+    height: 28px;
+  }
+
+  .slider:before {
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(22px);
+  }
+}
+
+/* Animation for section changes */
+.pref-section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pref-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Enhanced focus styles for accessibility */
+.pref-select:focus-visible,
+.threshold-input input:focus-visible,
+.toggle-switch input:focus-visible + .slider {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Loading state for the entire form */
+.preferences-form.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+/* Add these styles to your existing Preferences.css */
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pref-subtext {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.pref-subtext.warning {
+  color: #e67e22;
+  font-weight: 500;
+}
+
+/* Disabled state for threshold input */
+.threshold-input input:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Enhanced toggle states */
+.toggle-switch input:disabled + .slider {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Animation for toggle changes */
+.slider:before {
+  transition: .3s ease;
+}
+
+/* Hover effects for interactive elements */
+.pref-item:hover {
+  background: rgba(59, 130, 246, 0.02);
+  border-radius: 8px;
+  margin: 0 -0.5rem;
+  padding: 1.5rem 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .pref-item:hover {
+    margin: 0;
+    padding: 1.5rem 0;
+  }
+}
+/* Add these styles to your existing Preferences.css */
+
+.pref-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.discard-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discard-btn:hover:not(:disabled) {
+  background: var(--error-color);
+  color: white;
+  border-color: var(--error-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.discard-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.discard-icon {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.discard-btn:hover:not(:disabled) .discard-icon {
+  transform: rotate(-45deg);
+}
+
+.save-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.save-btn:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.save-icon {
+  font-size: 1.1rem;
+}
+
+/* Enhanced status indicators */
+.unsaved-indicator {
+  color: #e67e22;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(230, 126, 34, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(230, 126, 34, 0.2);
+}
+
+/* Responsive design for buttons */
+@media (max-width: 768px) {
+  .pref-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .discard-btn,
+  .save-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Animation for button interactions */
+.discard-btn,
+.save-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.discard-btn:active:not(:disabled),
+.save-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Loading state for discard button */
+.discard-btn:disabled .discard-icon,
+.save-btn:disabled .save-icon {
+  opacity: 0.7;
+}
