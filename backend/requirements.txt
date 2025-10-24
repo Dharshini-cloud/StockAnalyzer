@@ -1,9 +1,37 @@
+# =================================
+# Stock Analyzer Pro - Requirements
+# =================================
+
+# === CORE FLASK FRAMEWORK ===
 Flask==3.0.0
 Flask-CORS==4.0.0
 Flask-JWT-Extended==4.5.3
 Flask-Bcrypt==1.0.1
-pymongo==4.5.0
-certifi==2023.11.17
+Werkzeug==3.0.1
+Jinja2==3.1.2
+
+# === DATABASE & DATA HANDLING ===
+pymongo==4.6.1
+pandas==2.1.4
+numpy==1.25.2
+
+# === STOCK DATA & FINANCIAL ANALYSIS ===
+yfinance==0.2.18
+# ta-lib - Note: This requires system-level installation first
+# Install TA-Lib system library before pip install
+TA-Lib==0.4.28
+
+# === REAL-TIME & BACKGROUND JOBS ===
+Flask-SocketIO==5.3.6
+python-socketio==5.10.0
+eventlet==0.33.3
+APScheduler==3.10.4
+celery==5.3.4
+redis==5.0.1
+
+# === AUTHENTICATION & SECURITY ===
+PyJWT==2.8.0
+bcrypt==4.1.2
+cryptography==41.0.7
 python-dotenv==1.0.0
 ta-lib
-gunicorn
