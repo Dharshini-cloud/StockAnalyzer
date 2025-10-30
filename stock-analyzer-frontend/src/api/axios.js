@@ -2,9 +2,10 @@ import axios from 'axios';
 
 // Create base API instance - FIXED URL
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
-  timeout: 15000, // Increased timeout
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  timeout: 10000,
 });
+
 
 // Enhanced debug logging
 console.log('🚀 Axios configured with baseURL:', API.defaults.baseURL);

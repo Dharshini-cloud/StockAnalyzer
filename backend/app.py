@@ -1,7 +1,9 @@
+import os
 from flask import Flask, jsonify
 from flask_cors import CORS
-from config import DEBUG, PORT, HOST, JWT_SECRET
+from flask_jwt_extended import JWTManager
 from database import get_database
+from flask_socketio import SocketIO
 
 # Import blueprints
 from routes.auth_routes import auth_bp, jwt
@@ -10,19 +12,27 @@ from routes.notification_routes import notification_bp
 from routes.stock_routes import stock_bp
 from routes.analysis_routes import analysis_bp
 from routes.portfolio_routes import portfolio_bp
-from routes.profile_routes import profile_bp  # ✅ ADD THIS LINE
+from routes.profile_routes import profile_bp
 
+socketio = SocketIO(cors_allowed_origins="*")
 def create_app():
     app = Flask(__name__)
     
-    # Configuration
-    app.config['DEBUG'] = DEBUG
-    app.config['JWT_SECRET_KEY'] = JWT_SECRET
+    # Configuration - Use environment variables for production
+    app.config['DEBUG'] = os.environ.get('DEBUG', 'False').lower() == 'true'
+    app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'fallback-secret-key-change-in-production')
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
+    socketio.init_app(app)
+    # Get frontend URL from environment or use default
+    frontend_url = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
     
-    # CORS configuration
+    # CORS configuration for production
     CORS(app, 
-         origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+         origins=[
+             "http://localhost:3000", 
+             "http://127.0.0.1:3000",
+             frontend_url  # This will be your Render frontend URL
+         ],
          supports_credentials=True,
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
@@ -44,14 +54,15 @@ def create_app():
     app.register_blueprint(stock_bp, url_prefix='/api')
     app.register_blueprint(analysis_bp, url_prefix='/api')
     app.register_blueprint(portfolio_bp, url_prefix='/api')
-    app.register_blueprint(profile_bp, url_prefix='/api')  # ✅ ADD THIS LINE
+    app.register_blueprint(profile_bp, url_prefix='/api')
     
-    # Health check route
+    # Health check route - Important for deployment
     @app.route('/health', methods=['GET'])
     def health_check():
         return jsonify({
             "status": "healthy",
-            "message": "Stock Analyzer Backend is running"
+            "message": "Stock Analyzer Backend is running",
+            "environment": "production" if os.environ.get('RENDER') else "development"
         })
     
     # Root endpoint
@@ -60,13 +71,14 @@ def create_app():
         return jsonify({
             "message": "Stock Analyzer API",
             "version": "1.0.0",
+            "environment": "production" if os.environ.get('RENDER') else "development",
             "endpoints": {
                 "auth": "/api/auth",
                 "stocks": "/api/stock",
                 "watchlist": "/api/watchlist",
                 "notifications": "/api/notifications",
                 "portfolio": "/api/portfolio",
-                "profile": "/api/user/profile"  # ✅ ADD THIS LINE
+                "profile": "/api/user/profile"
             }
         })
     
@@ -79,8 +91,17 @@ def create_app():
     def internal_error(error):
         return jsonify({"error": "Internal server error"}), 500
     
+    @socketio.on('connect')
+    def handle_connect():
+        print('Client connected')
+    
+    @socketio.on('disconnect') 
+    def handle_disconnect():
+        print('Client disconnected')
+    
     return app
 
+# For local development
 if __name__ == '__main__':
     app = create_app()
-    app.run(host=HOST, port=PORT, debug=DEBUG)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
